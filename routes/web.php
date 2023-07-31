@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,11 @@ Route::get('/', function () {
 
 
 Route::get('/admin', function () {
+   if(session('users_detals'))
+    {
+      return redirect('/Dashboard');  
+    }
+    
     return view('adminLogin');
 });
 
@@ -26,3 +33,29 @@ Route::get('/admin', function () {
 Route::get('/Dashboard', function () {
     return view('admin');
 });
+
+
+Route::get('/Create-Category', function () {
+    return view('category');
+});
+
+
+
+Route::get('/Logout', function () {
+     Session::flush();
+    Session::forget('users_detals');
+   
+    if (Session::has('users_detals'))
+    {
+      return redirect('/Dashboard');  
+    }else{
+        
+         return redirect('/admin');  
+        
+    }
+   
+});
+
+
+
+Route::post('/admin-login', [Auth::class, 'do_login'])->name('login');
