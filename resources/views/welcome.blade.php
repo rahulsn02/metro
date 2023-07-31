@@ -1,5 +1,5 @@
-@extends('layout.master')
-@section('title','Home')
+@extends('frontlayout.master')
+@section('title','Metro')
 
 @section('content')
 
