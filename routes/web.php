@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\Configsetup;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +36,11 @@ Route::get('/Dashboard', function () {
 });
 
 
-Route::get('/Create-Category', function () {
-    return view('category');
+Route::get('/Create-Category/{base}', function ($base) {
+    return view('category',['base'=>$base]);
 });
 
-
+Route::get('/Trash-Category/{id}/{photo}',[Configsetup::class,'trash_photo']);
 
 Route::get('/Logout', function () {
      Session::flush();
@@ -59,3 +60,6 @@ Route::get('/Logout', function () {
 
 
 Route::post('/admin-login', [Auth::class, 'do_login'])->name('login');
+Route::post('add-category',[Configsetup::class, 'add_category'])->name('category-post');
+
+

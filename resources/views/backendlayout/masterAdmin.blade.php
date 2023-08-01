@@ -101,7 +101,7 @@
                         
                      
                           <li class="nav-item">
-                            <a href="{{url('Create-Category')}}" class="nav-link">
+                            <a href="{{url('Create-Category',['base'=>0])}}" class="nav-link">
                                 <i class="nav-icon fa fa-sitemap"></i>
                                 <p>
                                     Category
