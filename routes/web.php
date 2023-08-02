@@ -17,7 +17,7 @@ use App\Http\Controllers\Configsetup;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontendTemplate/welcome');
 });
 
 
@@ -27,20 +27,30 @@ Route::get('/admin', function () {
       return redirect('/Dashboard');  
     }
     
-    return view('adminLogin');
+    return view('backendTemplate/adminLogin');
 });
 
 
 Route::get('/Dashboard', function () {
-    return view('admin');
+    return view('backendTemplate/admin');
 });
 
 
 Route::get('/Create-Category/{base}', function ($base) {
-    return view('category',['base'=>$base]);
+    return view('backendTemplate/category',['base'=>$base]);
 });
 
-Route::get('/Trash-Category/{id}/{photo}',[Configsetup::class,'trash_photo']);
+
+Route::get('/Add-Product/{category_id}', function ($category_id) {
+    return view('backendTemplate/addProduct',['category_id'=>$category_id]);
+});
+
+
+Route::get('/Trash-Category/{id}/{photo}',[Configsetup::class,'trash_category']);
+
+Route::get('/Trash-Product/{id}/{photo}',[Configsetup::class,'trash_product']);
+
+
 
 Route::get('/Logout', function () {
      Session::flush();
@@ -61,5 +71,7 @@ Route::get('/Logout', function () {
 
 Route::post('/admin-login', [Auth::class, 'do_login'])->name('login');
 Route::post('add-category',[Configsetup::class, 'add_category'])->name('category-post');
+Route::post('add-product',[Configsetup::class, 'add_product'])->name('product-post');
+
 
 

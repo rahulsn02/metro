@@ -22,11 +22,39 @@
     <link rel="stylesheet" href="{{asset('assets/css/owl-carousel.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/css/lightbox.css')}}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <!--
 
 
 
 -->
+<style>
+div.fixed {
+ position: fixed;
+top: 100px;
+right: 0;
+width: 500px;
+height: 100%;
+border: 2px dashed #EEE;
+background: #000000d6;
+border-right: 0px;
+display:none;
+animation:backInRight; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s
+}
+
+#track_btn{
+
+background: white;
+padding: 5px;
+border: 1px solid #000;
+border-radius: 5px 5px 5px 5px;
+}
+
+</style>
+
+
     </head>
     
     <body>
@@ -56,9 +84,13 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#men">Men's</a></li>
-                            <li class="scroll-to-section"><a href="#women">Women's</a></li>
-                            <li class="scroll-to-section"><a href="#kids">Kid's</a></li>
+                             @foreach($category_data as $category) 
+                             
+                            
+                              
+                            <li class="scroll-to-section"><a href="#">{{$category->title}}</a></li>
+                            @endforeach
+    
                             <li class="submenu">
                                 <a href="javascript:;">Pages</a>
                                 <ul>
@@ -68,16 +100,10 @@
                                     <li><a href="contact.html">Contact Us</a></li>
                                 </ul>
                             </li>
-                            <li class="submenu">
-                                <a href="javascript:;">Features</a>
-                                <ul>
-                                    <li><a href="#">Features Page 1</a></li>
-                                    <li><a href="#">Features Page 2</a></li>
-                                    <li><a href="#">Features Page 3</a></li>
-                                    <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
-                                </ul>
-                            </li>
-                            <li class="scroll-to-section"><a href="#explore">Explore</a></li>
+                            
+                           <li class="scroll-to-section"><button id="track_btn">Track Order Status</button></li> 
+                         
+                           
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -112,9 +138,10 @@
                 <div class="col-lg-3">
                     <h4>Shopping &amp; Categories</h4>
                     <ul>
-                        <li><a href="#">Men’s Shopping</a></li>
-                        <li><a href="#">Women’s Shopping</a></li>
-                        <li><a href="#">Kid's Shopping</a></li>
+                       @foreach($category_data as $category) 
+                        <li><a href="#">{{$category->title}}’s Shopping</a></li>
+                        @endforeach
+                       
                     </ul>
                 </div>
                 <div class="col-lg-3">
@@ -176,6 +203,17 @@
     <script src="assets/js/custom.js"></script>
 
     <script>
+    
+    
+    $("#track_btn").click(function(){
+    
+    $(".fixed").toggle();
+    
+  
+    
+    })
+    
+    
 
         $(function() {
             var selectedClass = "";
@@ -190,6 +228,9 @@
                 
             });
         });
+        
+     
+        
 
     </script>
 

@@ -80,7 +80,7 @@
                             
            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Events List</h3>
+                <h3 class="card-title">Category List</h3>
               </div>
             
                 <div class="card-body"> 
@@ -116,7 +116,11 @@
                                                     
                                                     
                                                         
-                                                 <td>  <a href="{{url('Trash-Category',['id'=>$category->id,'photo'=>$category->image])}}" class="btn btn-danger btn-xs" target="_blank"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+                                                 <td>  <a href="{{url('Trash-Category',['id'=>$category->id,'photo'=>$category->image])}}" class="btn btn-danger btn-xs"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                 
+                                                 <a href="{{url('Add-Product',['category_id'=>$category->id])}}" class="btn btn-success btn-xs" target="_blank"> <i class="fa fa-add" aria-hidden="true"></i> Add Product</a>
+                                                 
+                                                 </td>
                                                         
                                               </tr>
                                               
@@ -126,10 +130,10 @@
                                             
                                             <tfoot>
                                                   <tr>
-                                                    <th>S.No</th>
+                                                     <th>S.No</th>
+                                                    <th>Image</th>
                                                     <th>Title</th>
                                                     <th>Description </th>
-                                                    <th>Start Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </tfoot>

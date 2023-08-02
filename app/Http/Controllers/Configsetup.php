@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image as ResizeImage;
 use Illuminate\Support\Facades\File;
 use App\Models\Category;
+use App\Models\Product;
 
 
 class Configsetup extends Controller
@@ -52,7 +53,7 @@ class Configsetup extends Controller
   
  
      
-    function trash_photo($image_id,$image){
+    function trash_category($image_id,$image){
            $category_obj= new Category();
        //  echo $image_id;
        //  echo $image;
@@ -69,6 +70,56 @@ if(File::exists(public_path($image_path))) {
           return redirect()->back()->with('success', 'your message,here');   
      }
      
+  //--------------This function resposible for adding product-----   
+  function add_product(Request $request){
+     
+     
+       $product_obj = new Product();
+       $path = public_path('products_images/');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+            
+            
+      $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+          
+        $name = time() . '.' . $request->image->extension();
+        ResizeImage::make($request->file('image'))
+            ->resize(370, 390)
+            ->save($path . $name);
+            
+       $product_obj->title = $request->title;
+       $product_obj->price = $request->price;
+       $product_obj->description = $request->description;
+       $product_obj->image = $name;
+       $product_obj->status = 1;
+       $product_obj->category_id = $request->category_id;
+       $product_obj->save();
+            
+     return redirect()->back()->with('success', 'Product added successfully');   
+     
+     }
+   //-------------Function is responsible to delete the category and photo 
+  
+ 
+     
+    function trash_product($product_id,$image){
+             $product_obj = new Product();
+       //  echo $image_id;
+       //  echo $image;
+         
+         $image_path = "/products_images/".$image;  // Value is not URL but directory file path
+         
+       
+         
+if(File::exists(public_path($image_path))) {
+   File::delete(public_path($image_path));
+}
+    
+         $res=$product_obj::where('id',$product_id)->delete();
+          return redirect()->back()->with('success', 'Product Deleted successfully!');   
+     }  
     
     
     
