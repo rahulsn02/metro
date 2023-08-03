@@ -69,7 +69,7 @@
     
    @foreach($category_data as $category) 
     
-    <section class="section" id="men">
+    <section class="section {{$category->title}}" id="men">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -272,7 +272,26 @@
     
     
     <div class="fixed">
-             This div element has position: fixed;
+          <i class="fa fa-times" aria-hidden="true" id="close"></i>  <h3 style="text-align:center;color:white;">Track Your Order Here</h3>
+          
+         <div style="width:100%;padding: 30px;">
+          
+           <div style="width:70%;float:left;">
+           <input type="text" name="search" value="" id="search" placeholder="Enter Slip No."/> 
+           <p style="font-size: 10px;color: white;">* you can track order by the order no or mobile No.</p>
+           
+           </div>
+           <div style="width:30%;float:right;">
+           
+           <button id="search_btn">Search</button>
+           
+           </div>
+          
+         </div> 
+          
+          
+         
+
      </div>
 
 

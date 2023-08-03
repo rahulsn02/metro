@@ -35,7 +35,7 @@ div.fixed {
 top: 100px;
 right: 0;
 width: 500px;
-height: 100%;
+height:100%;
 border: 2px dashed #EEE;
 background: #000000d6;
 border-right: 0px;
@@ -51,6 +51,41 @@ padding: 5px;
 border: 1px solid #000;
 border-radius: 5px 5px 5px 5px;
 }
+
+#close{
+  padding: 10px;
+  color: white;
+  font-size: 28px;
+  cursor: grab;
+}
+
+#search{
+  border-bottom: 2px solid #FFF;
+  background: #11050596;
+  border-left: 0px;
+  border-radius: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  color:white;
+  padding: 5px;
+}
+
+#search:focus {
+    outline: none;
+    color:white;
+}
+#search_btn{
+
+background: #0000;
+color: white;
+font-family: initial;
+padding: 4px;
+border: 1px dashed;
+border-radius: 0px 4px 4px 0px;
+}
+
+
+
 
 </style>
 
@@ -88,7 +123,7 @@ border-radius: 5px 5px 5px 5px;
                              
                             
                               
-                            <li class="scroll-to-section"><a href="#">{{$category->title}}</a></li>
+                            <li class="scroll-to-section"><a href="#" onclick=scrol_till(this);>{{$category->title}}</a></li>
                             @endforeach
     
                             <li class="submenu">
@@ -209,11 +244,44 @@ border-radius: 5px 5px 5px 5px;
     
     $(".fixed").toggle();
     
-  
+      $("#search").focus();
     
     })
     
     
+    
+    $("#close").click(function(){
+    
+    $(".fixed").toggle();
+    
+    });
+    
+    
+    $("#search_btn").click(function(){
+    
+       var search_str =   $("#search").val();
+     
+          alert(search_str);
+
+    
+    });
+    
+    
+
+  function scrol_till(obj){
+  
+  
+   
+     
+       $(window).scrollTop($('.'+obj.text).offset().top);
+  
+       const element = $('.'+obj.text);
+       element.classList.add('animate__animated', 'animate__bounceOutLeft');
+
+      
+      }
+
+
 
         $(function() {
             var selectedClass = "";
