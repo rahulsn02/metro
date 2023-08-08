@@ -20,12 +20,15 @@ Route::get('/', function () {
     return view('frontendTemplate/welcome');
 });
 
+
 Route::get('/CONTACT', function () {
     return view('frontendTemplate/contact');
 });
 
 
-
+Route::get('/WHO-WE-ARE', function () {
+    return view('frontendTemplate/about');
+});
 
 Route::get('/admin', function () {
    if(session('users_detals'))

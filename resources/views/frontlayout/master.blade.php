@@ -134,15 +134,12 @@ border-radius: 0px 4px 4px 0px;
                             <li class="scroll-to-section"><a href="#" onclick=scrol_till(this);>{{$category->title}}</a></li>
                             @endforeach
     
-                            <li class="submenu">
-                                <a href="javascript:;">Pages</a>
-                                <ul>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="products.html">Products</a></li>
-                                    <li><a href="single-product.html">Single Product</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                </ul>
-                            </li>
+    
+                          <li class="scroll-to-section"><a href="/WHO-WE-ARE">About Us</a></li>
+                            <li class="scroll-to-section"><a href="/CONTACT">Contact Us</a></li>
+    
+    
+                           
                             
                            <li class="scroll-to-section"><button id="track_btn">Track Order Status</button></li> 
                          
@@ -161,7 +158,28 @@ border-radius: 0px 4px 4px 0px;
     @yield('content')
     
     
-    
+      <div class="fixed">
+          <i class="fa fa-times" aria-hidden="true" id="close"></i>  <h3 style="text-align:center;color:white;">Track Your Order Here</h3>
+          
+         <div style="width:100%;padding: 30px;">
+          
+           <div style="width:70%;float:left;">
+           <input type="text" name="search" value="" id="search" placeholder="Enter Slip No."/> 
+           <p style="font-size: 10px;color: white;">* you can track order by the order no or mobile No.</p>
+           
+           </div>
+           <div style="width:30%;float:right;">
+           
+           <button id="search_btn">Search</button>
+           
+           </div>
+          
+         </div> 
+          
+          
+         
+
+     </div> 
       <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
