@@ -20,6 +20,12 @@ Route::get('/', function () {
     return view('frontendTemplate/welcome');
 });
 
+Route::get('/CONTACT', function () {
+    return view('frontendTemplate/contact');
+});
+
+
+
 
 Route::get('/admin', function () {
    if(session('users_detals'))
@@ -34,6 +40,9 @@ Route::get('/admin', function () {
 Route::get('/Dashboard', function () {
     return view('backendTemplate/admin');
 });
+
+
+
 
 
 Route::get('/Create-Category/{base}', function ($base) {

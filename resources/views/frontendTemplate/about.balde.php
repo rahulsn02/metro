@@ -25,7 +25,11 @@
                     <div class="right-content">
                         <div class="row">
                         
-                      
+                        <?php 
+                        
+                         $posterCategory_data = DB::table('category')->where('status', '=', 1)->limit(4)->get();
+                        
+                        ?>
                             @foreach($posterCategory_data as $posterCategory)
                             <div class="col-lg-6">
                                 <div class="right-first-image">

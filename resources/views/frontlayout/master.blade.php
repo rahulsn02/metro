@@ -117,9 +117,17 @@ border-radius: 0px 4px 4px 0px;
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
+                        
+                          <?php 
+                        
+                         $posterCategory_data = DB::table('category')->where('status', '=', 1)->limit(4)->get();
+                        
+                        ?>
+                        
+                        
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                             @foreach($category_data as $category) 
+                             @foreach($posterCategory_data as $category) 
                              
                             
                               
@@ -172,6 +180,11 @@ border-radius: 0px 4px 4px 0px;
                 </div>
                 <div class="col-lg-3">
                     <h4>Shopping &amp; Categories</h4>
+                     <?php 
+                        
+      $category_data = DB::table('category')->where('status', '=', 1)->get();
+                        
+    ?>
                     <ul>
                        @foreach($category_data as $category) 
                         <li><a href="#">{{$category->title}}’s Shopping</a></li>
