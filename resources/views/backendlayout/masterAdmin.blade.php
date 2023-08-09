@@ -109,7 +109,14 @@
                             </a>
                         </li>
                         
-                        
+                         <li class="nav-item">
+                            <a href="{{url('About-Page')}}" class="nav-link">
+                               <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <p>
+                                    About page
+                                </p>
+                            </a>
+                        </li>
              
                          
                         

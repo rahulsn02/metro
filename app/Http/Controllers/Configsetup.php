@@ -7,6 +7,7 @@ use Intervention\Image\Facades\Image as ResizeImage;
 use Illuminate\Support\Facades\File;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\About;
 
 
 class Configsetup extends Controller
@@ -120,6 +121,21 @@ if(File::exists(public_path($image_path))) {
          $res=$product_obj::where('id',$product_id)->delete();
           return redirect()->back()->with('success', 'Product Deleted successfully!');   
      }  
+    
+    
+    
+    
+    function about_page(Request $req){
+        $about_obj = new About();  
+        $about_obj->ribbon_title = $req->ribbon_title;
+        $about_obj->title  = $req->title ;
+        $about_obj->description = $req->description;
+        $about_obj->save();
+            
+     return redirect()->back()->with('success', 'Event added successfully');   
+ 
+    }
+    
     
     
     

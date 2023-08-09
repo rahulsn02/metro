@@ -19,7 +19,7 @@ body {
   display: grid;
   align-content: center;
   gap: 2rem;
-  padding: 2rem;
+  
   font-family: "Poppins", sans-serif;
   color: var(--color);
   background: var(--bgColor);
@@ -190,7 +190,16 @@ ul li .descr::before {
   }
 }
 
-
+.back-btn{
+    bottom: 0px;
+    position: fixed;
+    background: #e24a68;
+    padding: 15px;
+    color: white;
+    border-radius: 0px 32px 32px 0px;
+    margin-bottom: 10px;
+    border: 0px;
+}
 
 
 </style>
@@ -206,10 +215,10 @@ ul li .descr::before {
             
              <h1>Who WE ARE</h1>
              
-             <div style="width:100%;">
+             <div style="width:100%;min-height: 220px;background: antiquewhite;">
 
 <div style="width:30%;float:left;">
- <img src="assets/images/logo.png" style="height: 90px;">
+
 
 </div>
 <div style="width:70%;float:right;"></div>
@@ -242,9 +251,10 @@ ul li .descr::before {
         <div class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, non.</div>
     </li>
 </ul>
-            
-           
 
+ <button class="back-btn">Back</button>
+
+    
 </body>
 </html>
 

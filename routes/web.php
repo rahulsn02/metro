@@ -53,6 +53,11 @@ Route::get('/Create-Category/{base}', function ($base) {
 });
 
 
+Route::get('/About-Page', function () {
+    return view('backendTemplate/aboutAdmin');
+});
+
+
 Route::get('/Add-Product/{category_id}', function ($category_id) {
     return view('backendTemplate/addProduct',['category_id'=>$category_id]);
 });
@@ -85,5 +90,5 @@ Route::post('/admin-login', [Auth::class, 'do_login'])->name('login');
 Route::post('add-category',[Configsetup::class, 'add_category'])->name('category-post');
 Route::post('add-product',[Configsetup::class, 'add_product'])->name('product-post');
 
-
+Route::post('About-Page',[Configsetup::class, 'about_page'])->name('who-we-are-post');
 
