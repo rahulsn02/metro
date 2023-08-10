@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\About;
+use App\Models\Company;
 
 
 class Configsetup extends Controller
@@ -101,7 +102,7 @@ if(File::exists(public_path($image_path))) {
      return redirect()->back()->with('success', 'Product added successfully');   
      
      }
-   //-------------Function is responsible to delete the category and photo 
+   //-------------Function is responsible to delete the product and photo 
   
  
      
@@ -135,6 +136,67 @@ if(File::exists(public_path($image_path))) {
      return redirect()->back()->with('success', 'Event added successfully');   
  
     }
+    
+    
+    function trash_about_post($id){
+    
+    $about_obj = new About(); 
+    
+    $about_obj::where('id',$id)->delete();
+    return redirect()->back()-with('success','About Page Post successfully deleted');
+    
+    
+    }
+    
+    //-----------------Function is written for update company information--------
+    function company_profile(Request $request){
+    
+         $company_obj = new Company();
+    
+    
+        $path = public_path('compnay_logo/');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+      
+     if($request->file('image')){ 
+            
+            
+      $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+          
+        $Imagename = time() . '.' . $request->image->extension();
+        ResizeImage::make($request->file('image'))
+            ->resize(370, 390)
+            ->save($path . $Imagename);
+    }else{
+    
+     $Imagename = $request->logo;
+    }
+    
+    
+    $company_obj::where('id', 1)
+              ->update(['logo' =>  $Imagename,
+                        'name'=>$request->name, 
+                        'email'=> $request->email,
+                        'address'=> $request->address,
+                        'mobile'=> $request->mobile,
+                        'office_time'=> $request->office_time,
+                        'gstin'=>  $request->gstin,
+                        'facebook_link'=>  $request->facebook_link,
+                        'instagram_link'=>  $request->instagram_link,
+                        'twitter_link'=>  $request->twitter_link,
+                        'linkdin_link'=>  $request->linkdin_link]);
+                        
+                        
+             return redirect()->back()->with('success','Company Profile updated successfully');           
+    
+    
+    
+    }
+    
+    
+    
     
     
     

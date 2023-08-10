@@ -68,6 +68,7 @@ border-radius: 5px 5px 5px 5px;
   border-top: 0px;
   color:white;
   padding: 5px;
+   width: 100%;
 }
 
 #search:focus {
@@ -82,6 +83,7 @@ font-family: initial;
 padding: 4px;
 border: 1px dashed;
 border-radius: 0px 4px 4px 0px;
+width:100%;
 }
 
 
@@ -105,6 +107,13 @@ border-radius: 0px 4px 4px 0px;
     <!-- ***** Preloader End ***** -->
     
     
+     <?php 
+                        
+                         $profile_data = DB::table('company_profile')->get();
+                        
+                        ?>
+    
+    
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
@@ -113,7 +122,7 @@ border-radius: 0px 4px 4px 0px;
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png" style="height: 90px;">
+                            <img src="/compnay_logo/{{$profile_data[0]->logo}}" style="height: 90px;">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -157,26 +166,41 @@ border-radius: 0px 4px 4px 0px;
     <!-- ***** Header Area End ***** -->
     @yield('content')
     
-    
+     <!-- ***** There Is code to track the order ***** -->
       <div class="fixed">
-          <i class="fa fa-times" aria-hidden="true" id="close"></i>  <h3 style="text-align:center;color:white;">Track Your Order Here</h3>
           
-         <div style="width:100%;padding: 30px;">
           
-           <div style="width:70%;float:left;">
-           <input type="text" name="search" value="" id="search" placeholder="Enter Slip No."/> 
-           <p style="font-size: 10px;color: white;">* you can track order by the order no or mobile No.</p>
+           <h4 style="border-bottom: 1px dashed #fff;">  <i class="fa fa-times" aria-hidden="true" id="close"></i>  
+            <span style="text-align:center;color:white;">Track Your Order Here </span></h4>
+            <br>
+            
+            
+               <div style="width:100%;padding:45px;">
            
+               <div style="width:30%;float:left;"> 
+                   <select  id="year" style="padding: 5px;background: black;color: white;border-radius: 5px 5px 5px 5px;width:80%;">
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                       <option value="M-">M-</option>
+                  <select>
+               </div>
+            
+               <div  style="width:50%;float:left;"> 
+                    <input type="text" name="search" value="" id="search" placeholder="Enter Slip No."/> 
+                     <p style="font-size:8px;color: white;">* you can track order by the order no or mobile No.</p>
+               </div> 
+           
+               <div  style="width:20%;float:right;"> 
+                   <button id="search_btn">Search</button>
+               </div>
+               <br>
+
            </div>
-           <div style="width:30%;float:right;">
            
-           <button id="search_btn">Search</button>
-           
-           </div>
+            
           
-         </div> 
-          
-          
+                  
          
 
      </div> 
@@ -186,13 +210,13 @@ border-radius: 0px 4px 4px 0px;
             <div class="row">
                 <div class="col-lg-3">
                     <div class="first-item">
-                        <div class="logo">
-                            <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                        <div class="logo" style="color:white;">
+                            {{$profile_data[0]->name}}
                         </div>
                         <ul>
-                            <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
-                            <li><a href="#">hexashop@company.com</a></li>
-                            <li><a href="#">010-020-0340</a></li>
+                            <li><a href="#">{{$profile_data[0]->address}}</a></li>
+                            <li><a href="#">{{$profile_data[0]->email}}</a></li>
+                            <li><a href="#">{{$profile_data[0]->mobile}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -213,10 +237,9 @@ border-radius: 0px 4px 4px 0px;
                 <div class="col-lg-3">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#">Homepage</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="/">Homepage</a></li>
+                        <li><a href="/WHO-WE-ARE">About Us</a></li>
+                        <li><a href="/CONTACT">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
@@ -224,20 +247,19 @@ border-radius: 0px 4px 4px 0px;
                     <ul>
                         <li><a href="#">Help</a></li>
                         <li><a href="#">FAQ's</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Tracking ID</a></li>
+                        
                     </ul>
                 </div>
                 <div class="col-lg-12">
                     <div class="under-footer">
-                        <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved. 
+                        <p>Copyright © 2023 {{$profile_data[0]->name}} Ltd. All Rights Reserved. 
                         
-                        <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a></p>
+                        <br>Design: <a href="https://www.linkedin.com/in/rahul-saini-45041941/" target="_parent" title="desined by Rahul">Rahul Saini</a></p>
                         <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="{{$profile_data[0]->facebook_link}}"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="{{$profile_data[0]->instagram_link}}"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="{{$profile_data[0]->twitter_link}}"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="{{$profile_data[0]->linkdin_link}}"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -290,9 +312,68 @@ border-radius: 0px 4px 4px 0px;
     
     $("#search_btn").click(function(){
     
-       var search_str =   $("#search").val();
+       var search_str = $("#search").val();
      
+          if(search_str.length==10)
+          {
+          
           alert(search_str);
+          
+          }else{
+               
+               let year = $("#year").val();
+               
+               let search_string = year+search_str
+               
+              alert(search_string);
+          
+          }
+          
+          
+                         
+                     $.ajax({
+                    type: "POST",
+                    url: "https://metro.shristitch.com/track_status.php",
+                    data: 'SLIP_NO=' + SLIP_ID,
+                    cache: false,
+                    success: function(response) {
+                        
+                         var str = "";
+                              $("#responseContainer").html(str);
+                        
+                     var obj = JSON.parse(response); 
+                      
+                        for(var i=0; i<obj.length; i++) {
+                            
+                            //alert(obj[i].istatus);
+                         if(obj[i].istatus=='On Cutting'){ 
+                             var img_string = 'cutting.jpg';    
+                         }
+                           if(obj[i].istatus=='On Stitching'){ 
+                             var img_string = 'stitching.png';    
+                         }
+                         
+                          if(obj[i].istatus=='Complete'){ 
+                             var img_string = 'complete.png';    
+                         }
+                         
+                          if(obj[i].istatus=='Delivery'){ 
+                             var img_string = 'delivered.png';    
+                         }
+                            
+                            
+                      
+                              str+= "<div class='clearfix'></div>";
+                              str+= "<div id='containerSAREE' class='set mainContainer'><h4 style='margin-bottom:0px;'>"+obj[i].item_title+"</h4><div class='daytime'><div class='imgContainer'> <img class='itemImage' src='https://metrotailors.com/new-asset/img/"+img_string+"' id='imgStatus'> <span class='itemLabel' id='labelSAREE'>"+obj[i].istatus+"</span></div></div></div>";  
+                    }
+                     $("#responseContainer").html(str);
+                    
+                    }
+                    });
+          
+          
+          
+          
 
     
     });

@@ -45,6 +45,11 @@ Route::get('/Dashboard', function () {
 });
 
 
+Route::get('/Company-Profile', function () {
+    return view('backendTemplate/company');
+});
+
+
 
 
 
@@ -67,6 +72,8 @@ Route::get('/Trash-Category/{id}/{photo}',[Configsetup::class,'trash_category'])
 
 Route::get('/Trash-Product/{id}/{photo}',[Configsetup::class,'trash_product']);
 
+Route::get('/Trash-About-Post/{id}',[Configsetup::class,'trash_about_post']);
+
 
 
 Route::get('/Logout', function () {
@@ -79,7 +86,7 @@ Route::get('/Logout', function () {
     }else{
         
          return redirect('/admin');  
-        
+   
     }
    
 });
@@ -91,4 +98,5 @@ Route::post('add-category',[Configsetup::class, 'add_category'])->name('category
 Route::post('add-product',[Configsetup::class, 'add_product'])->name('product-post');
 
 Route::post('About-Page',[Configsetup::class, 'about_page'])->name('who-we-are-post');
+Route::post('Update-Company-Profile',[Configsetup::class, 'company_profile'])->name('company-profile');
 

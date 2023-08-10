@@ -11,11 +11,11 @@
                     <div class="left-content">
                         <div class="thumb">
                             <div class="inner-content">
-                                <h4>We Are Hexashop</h4>
-                                <span>Awesome, clean &amp; creative HTML5 Template</span>
-                                <div class="main-border-button">
+                                <h4>We Are Le Merto</h4>
+                                <span>Awesome, designer &amp; creative Tailors</span>
+                               <!-- <div class="main-border-button">
                                     <a href="#">Purchase Now!</a>
-                                </div>
+                                </div>-->
                             </div>
                             <img src="assets/images/left-banner-image.jpg" alt="">
                         </div>
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="down-content">
                                     <h4>{{$product->title}}</h4>
-                                    <span><i class="fa fa-rupee"></i> {{$product->price}}</span>
+                                   <!-- <span><i class="fa fa-rupee"></i> {{$product->price}}</span>--->
                                    <!--- <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
@@ -250,17 +250,32 @@
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-6">
+                         <?php 
+                        
+                         $profile_data = DB::table('company_profile')->get();
+                        
+                        ?>
+                        
                             <ul>
-                                <li>Store Location:<br><span>Sunny Isles Beach, FL 33160, United States</span></li>
-                                <li>Phone:<br><span>010-020-0340</span></li>
-                                <li>Office Location:<br><span>North Miami Beach</span></li>
+                                <li>Store Location:<br><span>{{$profile_data[0]->address}}</span></li>
+                                <li>Phone:<br><span>{{$profile_data[0]->mobile}}</span></li>
+                                
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul>
-                                <li>Work Hours:<br><span>07:30 AM - 9:30 PM Daily</span></li>
-                                <li>Email:<br><span>info@company.com</span></li>
-                                <li>Social Media:<br><span><a href="#">Facebook</a>, <a href="#">Instagram</a>, <a href="#">Behance</a>, <a href="#">Linkedin</a></span></li>
+                                <li>Work Hours:<br><span>{{$profile_data[0]->office_time}}</span></li>
+                                <li>Email:<br><span>{{$profile_data[0]->email}}</span></li>
+                                <li>Social Media:<br><span>
+                                
+                               
+                           <a href="{{$profile_data[0]->facebook_link}}"><i class="fa fa-facebook"></i></a>
+                           <a href="{{$profile_data[0]->instagram_link}}"><i class="fa fa-twitter"></i></a>
+                           <a href="{{$profile_data[0]->twitter_link}}"><i class="fa fa-linkedin"></i></a>
+                            <a href="{{$profile_data[0]->linkdin_link}}"><i class="fa fa-instagram"></i></a>
+                        
+                                   
+                                   </span></li>
                             </ul>
                         </div>
                     </div>

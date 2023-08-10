@@ -99,6 +99,16 @@
                         <!-- Sidebar Menu -->
                    
                         
+                      <li class="nav-item">
+                            <a href="{{url('Company-Profile')}}" class="nav-link">
+                                <i class="fa fa-building" aria-hidden="true"></i>
+                                <p>
+                                    Company Profile
+                                </p>
+                            </a>
+                        </li>
+                     
+                     
                      
                           <li class="nav-item">
                             <a href="{{url('Create-Category',['base'=>0])}}" class="nav-link">
@@ -132,7 +142,7 @@
     
     
      <footer class="main-footer">
-                <strong>Copyright &copy; 2022-2023 <a href="http://shrideva.com">Shrideva Technomech Pvt. Ltd.</a>.</strong>
+                <strong>Copyright &copy; 2022-2023 <a href="https://www.linkedin.com/in/rahul-saini-45041941/">Rahul Saini</a>.</strong>
                 All rights reserved.
                 <div class="float-right d-none d-sm-inline-block">
                     <b>Version</b> 0.1

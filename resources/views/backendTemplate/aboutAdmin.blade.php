@@ -86,11 +86,56 @@
                             <div class="col-md-12">
                    
                             <?php
-                                        $page_data = DB::table('about_page')->get();
+                                        $about_page_data = DB::table('about_page')->get();
                                         $count = 0;
                                         ?>
 
-                                 
+                                 <table id="example5" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Ribbon Title</th>
+                                                    <th>Title</th>
+                                                    <th>Description </th>  
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $count=0; ?>
+                                              @foreach($about_page_data as $page_data)
+                                                   <?php $count = $count + 1; ?>
+                                              <tr>
+                                                  <td>{{$count}}</td>
+                                                  
+                                                  <td>{{$page_data->ribbon_title}}</td>
+                                                  <td>{{$page_data->title}}</td>
+                                                  <td>{{$page_data->description}}</td>
+                                                    
+                                                    
+                                                        
+                                                 <td>  <a href="{{url('Trash-About-Post',['id'=>$page_data->id])}}" class="btn btn-danger btn-xs"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                 
+                                                
+                                                 
+                                                 </td>
+                                                        
+                                              </tr>
+                                              
+                     
+                                           @endforeach
+                                              </tbody>
+                                            
+                                            <tfoot>
+                                                  <tr>
+                                                   <th>S.No</th>
+                                                
+                                                    <th>Ribbon Title</th>
+                                                     <th>Title </th>
+                                                    <th>Description </th>  
+                                                    <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
                                             
                                            
                                         </div>

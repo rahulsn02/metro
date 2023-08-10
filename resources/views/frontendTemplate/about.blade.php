@@ -16,7 +16,7 @@ body {
   --color: rgba(30, 30, 30);
   --bgColor: rgba(245, 245, 245);
   min-height: 100vh;
-  display: grid;
+ /* display: grid; */
   align-content: center;
   gap: 2rem;
   
@@ -213,9 +213,9 @@ ul li .descr::before {
     
  
             
-             <h1>Who WE ARE</h1>
              
-             <div style="width:100%;min-height: 220px;background: antiquewhite;">
+             
+             <div style="width:100%;min-height: 150px;background: antiquewhite;">
 
 <div style="width:30%;float:left;">
 
@@ -224,35 +224,33 @@ ul li .descr::before {
 <div style="width:70%;float:right;"></div>
 
 </div>
+
+<h1 style="padding: 10px;">Who WE ARE</h1>
+
 <ul>
-    <li style="--accent-color:#41516C">
-        <div class="date">2002</div>
-        <div class="title">Title 1</div>
-        <div class="descr">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas itaque hic quibusdam fugiat est numquam harum, accusamus suscipit consequatur laboriosam!</div>
+
+  <?php
+  
+       $color = array("#41516C","#FBCA3E","#E24A68","#1B5F8C","#4CADAD"); 
+  
+      $about_page_data = DB::table('about_page')->get();
+  $count = -1;
+  ?>
+  @if($about_page_data)
+   @foreach($about_page_data as $row)
+   <?php $count = $count + 1; ?>
+    <li style="--accent-color:{{$color[$count]}}">
+        <div class="date">{{$row->ribbon_title}}</div>
+        <div class="title">{{$row->title}}</div>
+        <div class="descr">{{$row->description}}</div>
     </li>
-    <li style="--accent-color:#FBCA3E">
-        <div class="date">2007</div>
-        <div class="title">Title 2</div>
-        <div class="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos adipisci nobis nostrum vero nihil veniam.</div>
-    </li>
-    <li style="--accent-color:#E24A68">
-        <div class="date">2012</div>
-        <div class="title">Title 3</div>
-        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minima consequuntur soluta placeat iure totam commodi repellendus ea delectus, libero fugit quod reprehenderit, sequi quo, et dolorum saepe nulla hic.</div>
-    </li>
-    <li style="--accent-color:#1B5F8C">
-        <div class="date">2017</div>
-        <div class="title">Title 4</div>
-        <div class="descr">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque.</div>
-    </li>
-    <li style="--accent-color:#4CADAD">
-        <div class="date">2022</div>
-        <div class="title">Title 5</div>
-        <div class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, non.</div>
-    </li>
+    <?php if($count==4){$count=-1;} ?>
+    @endforeach
+    @endif
+    
 </ul>
 
- <button class="back-btn">Back</button>
+ <a href="/"><button class="back-btn">Back</button></a>
 
     
 </body>
