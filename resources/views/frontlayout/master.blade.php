@@ -44,6 +44,20 @@ animation:backInRight; /* referring directly to the animation's @keyframe declar
   animation-duration: 2s
 }
 
+#item{
+animation:backInRight; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s
+
+}
+
+
+#imgStatus{
+
+height:30px;
+
+}
+
+
 #track_btn{
 
 background: white;
@@ -116,6 +130,11 @@ width:100%;
     
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
+          @if(session()->has('Newsletter'))
+    <div class="alert alert-success">
+        {{ session()->get('Newsletter') }}
+    </div>
+@endif
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -135,7 +154,7 @@ width:100%;
                         
                         
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
                              @foreach($posterCategory_data as $category) 
                              
                             
@@ -162,6 +181,8 @@ width:100%;
                 </div>
             </div>
         </div>
+        
+        
     </header>
     <!-- ***** Header Area End ***** -->
     @yield('content')
@@ -198,6 +219,11 @@ width:100%;
 
            </div>
            
+           
+           <div id="responseContainer" style="padding:45px;color:white;">
+           
+           
+           </div>
             
           
                   
@@ -312,20 +338,22 @@ width:100%;
     
     $("#search_btn").click(function(){
     
+    
+     let search_string ='';
        var search_str = $("#search").val();
      
           if(search_str.length==10)
           {
           
-          alert(search_str);
+            search_string = search_str;
           
           }else{
                
                let year = $("#year").val();
                
-               let search_string = year+search_str
+                 search_string = year+search_str
                
-              alert(search_string);
+             // alert(search_string);
           
           }
           
@@ -334,9 +362,26 @@ width:100%;
                      $.ajax({
                     type: "POST",
                     url: "https://metro.shristitch.com/track_status.php",
-                    data: 'SLIP_NO=' + SLIP_ID,
+                    data: 'SLIP_NO=' + search_string,
                     cache: false,
                     success: function(response) {
+                    
+                   // alert(response);
+                    
+                         if(search_str.length==10)
+                               { 
+                               
+                               var str = "Data Not Available";
+                               
+                               
+                               
+                                $("#responseContainer").html(str);
+                               
+                               }else{
+          
+                        
+                        
+                        
                         
                          var str = "";
                               $("#responseContainer").html(str);
@@ -357,16 +402,29 @@ width:100%;
                              var img_string = 'complete.png';    
                          }
                          
-                          if(obj[i].istatus=='Delivery'){ 
+                            if(obj[i].istatus=='Ready From Worker'){ 
+                             var img_string = 'complete.png';    
+                         }
+                         
+                         
+                         
+                          if(obj[i].istatus=='Delivered'){ 
                              var img_string = 'delivered.png';    
                          }
                             
-                            
+                      // alert(img_string);     
                       
-                              str+= "<div class='clearfix'></div>";
-                              str+= "<div id='containerSAREE' class='set mainContainer'><h4 style='margin-bottom:0px;'>"+obj[i].item_title+"</h4><div class='daytime'><div class='imgContainer'> <img class='itemImage' src='https://metrotailors.com/new-asset/img/"+img_string+"' id='imgStatus'> <span class='itemLabel' id='labelSAREE'>"+obj[i].istatus+"</span></div></div></div>";  
+                        
+                              str+= "<div style='padding:20px' id='item'><h6 style='margin-bottom:0px;'>"+obj[i].item_title+"</h6><div class='daytime'><div class='imgContainer'> <img class='itemImage' src='icon/"+img_string+"' id='imgStatus'> <span class='itemLabel' id='labelSAREE'>"+obj[i].istatus+"</span></div></div></div>";  
                     }
+                    
+                   // alert(str);
+                    
                      $("#responseContainer").html(str);
+                     
+                     
+                     
+                     }
                     
                     }
                     });

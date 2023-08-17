@@ -73,6 +73,10 @@ Route::get('/Trash-Category/{id}/{photo}',[Configsetup::class,'trash_category'])
 Route::get('/Trash-Product/{id}/{photo}',[Configsetup::class,'trash_product']);
 
 Route::get('/Trash-About-Post/{id}',[Configsetup::class,'trash_about_post']);
+ 
+Route::get('/Trash-Message/{id}',[Configsetup::class,'trash_message']);
+
+Route::get('/Trash-Newsletter/{id}',[Configsetup::class,'trash_newsletter']);
 
 
 
@@ -99,4 +103,7 @@ Route::post('add-product',[Configsetup::class, 'add_product'])->name('product-po
 
 Route::post('About-Page',[Configsetup::class, 'about_page'])->name('who-we-are-post');
 Route::post('Update-Company-Profile',[Configsetup::class, 'company_profile'])->name('company-profile');
+Route::post('Users-Contact',[Configsetup::class,'users_contact'])->name('contact-post');
+Route::post('News-Letter',[Configsetup::class,'news_letter'])->name('news-letter-post');
+
 

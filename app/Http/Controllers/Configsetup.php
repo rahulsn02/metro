@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\About;
 use App\Models\Company;
+use App\Models\Contact;
+use App\Models\Newsletter;
 
 
 class Configsetup extends Controller
@@ -195,6 +197,69 @@ if(File::exists(public_path($image_path))) {
     
     }
     
+    
+   //--------Function is responsible to handle user contact from contact form------
+   
+   
+   
+   function users_contact(Request $request){
+   
+   
+            
+           $contact_obj = new Contact();
+           
+           
+           $contact_obj->full_name = $request->full_name;
+           $contact_obj->email = $request->email;
+           $contact_obj->message = $request->message;
+           
+           $contact_obj->save();
+           
+           return redirect()->back()->with('message','We have received your message and would like to thank you for writing to us');   
+           
+   } 
+   
+   
+   
+     function trash_message($id){
+    
+   $contact_obj = new Contact();
+    
+    $contact_obj::where('id',$id)->delete();
+    return redirect()->back()->with('trashMessage','User Message deleted Successfully');
+    
+    
+    }
+   
+   
+   //----------function is written to handle News Letter subcription-------
+   
+   function news_letter(Request $request){
+   
+    $newsletterobj = new Newsletter();
+   
+    $newsletterobj->full_name =$request->full_name;
+    $newsletterobj->email = $request->email;
+    $newsletterobj->status = 1;
+    
+    $newsletterobj->save();
+    
+    return redirect()->back()->with('Newsletter','Thanks for subscribing! You will get notify for new update and offers');
+    
+   
+   }
+   
+   
+     function trash_newsletter($id){
+    
+    $newsletterobj = new Newsletter();   
+    $newsletterobj::where('id',$id)->delete();
+    return redirect()->back()->with('trashNewsletter','Subscribed User for NewsLetter deleted Successfully');
+    
+    
+    }
+   
+   
     
     
     

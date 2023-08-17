@@ -134,7 +134,7 @@
 
 
     <!-- ***** Social Area Starts ***** -->
-    <section class="section" id="social">
+    <!---<section class="section" id="social">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -215,7 +215,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--->
     <!-- ***** Social Area Ends ***** -->
 
     <!-- ***** Subscribe Area Starts ***** -->
@@ -227,11 +227,12 @@
                         <h2>By Subscribing To Our Newsletter You Can Get Interesting Offer</h2>
                        
                     </div>
-                    <form id="subscribe" action="" method="get">
+                     <form id="subscribe" action="{{route('news-letter-post')}}" method="post">
+                    @csrf
                         <div class="row">
                           <div class="col-lg-5">
                             <fieldset>
-                              <input name="name" type="text" id="name" placeholder="Your Name" required="">
+                              <input name="full_name" type="text" id="name" placeholder="Your Name" required="">
                             </fieldset>
                           </div>
                           <div class="col-lg-5">
